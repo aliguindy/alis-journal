@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ali's journal</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Lora:400,700&display=swap"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Borel&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://cdn.tiny.cloud/1/alkt0ya2fi1ruzfnkyyo46m953yin5dm6dbzpjll322qum0v/tinymce/7/tinymce.min.js"
+      referrerpolicy="origin"
+    ></script>
+    <!-- Removed the non-cloud tinymce.init -->
+  </head>
+  <body>
+    <!-- Toggle Switch Container -->
+    <div class="toggle-container">
+      <!-- SVG Definitions for Icons (hidden) -->
+      <svg display="none">
+        <symbol id="light" viewBox="0 0 24 24">
+          <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line
+              x1="12"
+              y1="17"
+              x2="12"
+              y2="20"
+              transform="rotate(0,12,12)"
+            />
+            <line
+              x1="12"
+              y1="17"
+              x2="12"
+              y2="20"
+              transform="rotate(45,12,12)"
+            />
+            <line
+              x1="12"
+              y1="17"
+              x2="12"
+              y2="20"
+              transform="rotate(90,12,12)"
+            />
+            <line
+              x1="12"
+              y1="17"
+              x2="12"
+              y2="20"
+              transform="rotate(135,12,12)"
+            />
+            <line
+              x1="12"
+              y1="17"
+              x2="12"
+              y2="20"
+              transform="rotate(180,12,12)"
+            />
+            <line
+              x1="12"
+              y1="17"
+              x2="12"
+              y2="20"
+              transform="rotate(225,12,12)"
+            />
+            <line
+              x1="12"
+              y1="17"
+              x2="12"
+              y2="20"
+              transform="rotate(270,12,12)"
+            />
+            <line
+              x1="12"
+              y1="17"
+              x2="12"
+              y2="20"
+              transform="rotate(315,12,12)"
+            />
+          </g>
+          <circle fill="currentColor" cx="12" cy="12" r="5" />
+        </symbol>
+        <symbol id="dark" viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M15.1,14.9c-3-0.5-5.5-3-6-6C8.8,7.1,9.1,5.4,9.9,4c0.4-0.8-0.4-1.7-1.2-1.4C4.6,4,1.8,7.9,2,12.5
+            c0.2,5.1,4.4,9.3,9.5,9.5c4.5,0.2,8.5-2.6,9.9-6.6c0.3-0.8-0.6-1.7-1.4-1.2C18.6,14.9,16.9,15.2,15.1,14.9z"
+          />
+        </symbol>
+      </svg>
+      <!-- Toggle Switch Markup -->
+      <label class="switch">
+        <input class="switch__input" type="checkbox" role="switch" name="dark" />
+        <svg class="switch__icon" width="24px" height="24px" aria-hidden="true">
+          <use href="#light" />
+        </svg>
+        <svg class="switch__icon" width="24px" height="24px" aria-hidden="true">
+          <use href="#dark" />
+        </svg>
+        <span class="switch__inner"></span>
+        <span class="switch__inner-icons">
+          <svg class="switch__icon" width="24px" height="24px" aria-hidden="true">
+            <use href="#light" />
+          </svg>
+          <svg class="switch__icon" width="24px" height="24px" aria-hidden="true">
+            <use href="#dark" />
+          </svg>
+        </span>
+        <span class="switch__sr">Dark Mode</span>
+      </label>
+    </div>
+
+    <div class="container">
+      <h1>My Journal</h1>
+      <script>
+        tinymce.init({
+          selector: "textarea",
+          skin: "oxide-dark",
+          content_css: "dark",
+          plugins: [
+            // Core editing features
+            "anchor",
+            "autolink",
+            "charmap",
+            "codesample",
+            "emoticons",
+            "image",
+            "link",
+            "lists",
+            "media",
+            "searchreplace",
+            "table",
+            "visualblocks",
+            "wordcount",
+            // Premium features trial until Mar 8, 2025:
+            "checklist",
+            "mediaembed",
+            "casechange",
+            "export",
+            "formatpainter",
+            "pageembed",
+            "a11ychecker",
+            "tinymcespellchecker",
+            "permanentpen",
+            "powerpaste",
+            "advtable",
+            "advcode",
+            "editimage",
+            "advtemplate",
+            "ai",
+            "mentions",
+            "tinycomments",
+            "tableofcontents",
+            "footnotes",
+            "mergetags",
+            "autocorrect",
+            "typography",
+            "inlinecss",
+            "markdown",
+            "importword",
+            "exportword",
+            "exportpdf"
+          ],
+          toolbar:
+            "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
+          tinycomments_mode: "embedded",
+          tinycomments_author: "Author name",
+          mergetags_list: [
+            { value: "First.Name", title: "First Name" },
+            { value: "Email", title: "Email" }
+          ],
+          ai_request: (request, respondWith) =>
+            respondWith.string(() =>
+              Promise.reject("See docs to implement AI Assistant")
+            )
+        });
+      </script>
+      <textarea>
+        What's on your mind today
+      </textarea>
+    </div>
+
+    <script>
+      // Get the switch input element
+      const switchInput = document.querySelector(".switch__input");
+      // Apply saved theme preference on page load
+      if (localStorage.getItem("darkMode") === "true") {
+        document.body.classList.add("dark-mode");
+        switchInput.checked = true;
+      }
+      // Toggle dark mode on change
+      switchInput.addEventListener("change", () => {
+        document.body.classList.toggle("dark-mode");
+        localStorage.setItem(
+          "darkMode",
+          document.body.classList.contains("dark-mode")
+        );
+      });
+    </script>
+  </body>
+</html>
